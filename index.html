@@ -3,109 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Live Chat Support | Your Company</title>
+  <title>24/7 Live Support | Your Company</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     
     body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #f0f4f8, #e6edf7, #ebf2ff, #f5f9ff);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
     }
     
-    .chat-container {
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-      border-radius: 16px;
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .main-content {
+      backdrop-filter: blur(5px);
+      background: rgba(255,255,255,0.85);
+      border-radius: 20px;
       overflow: hidden;
     }
     
-    .chat-header {
-      background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
-      color: white;
+    .floating-dots {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
     }
     
-    .chat-placeholder {
-      background: rgba(249, 250, 251, 0.7);
-      backdrop-filter: blur(5px);
+    .dot {
+      position: absolute;
+      background: rgba(0, 31, 73, 0.08);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
     }
     
-    .pulse {
-      animation: pulse 2s infinite;
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-1000px) rotate(720deg); }
     }
     
-    @keyframes pulse {
-      0% { opacity: 0.6; }
-      50% { opacity: 1; }
-      100% { opacity: 0.6; }
+    .btn-primary {
+      background-color: #001f49;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background-color: #003366;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 31, 73, 0.2);
     }
   </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="flex items-center justify-center p-4">
 
-  <div class="w-full max-w-2xl chat-container">
-    <!-- Header with gradient background -->
-    <div class="chat-header p-6 text-center">
-      <div class="flex items-center justify-center space-x-3 mb-3">
-        <i class="fas fa-comment-dots text-2xl"></i>
-        <h1 class="text-2xl font-bold">Live Chat Support</h1>
-      </div>
-      <p class="text-blue-100">We're here to help you in real-time</p>
+  <!-- Floating background dots -->
+  <div class="floating-dots">
+    <div class="dot" style="width: 100px; height: 100px; left: 10%; top: 10%;"></div>
+    <div class="dot" style="width: 150px; height: 150px; left: 70%; top: 20%; animation-delay: 2s;"></div>
+    <div class="dot" style="width: 60px; height: 60px; left: 30%; top: 60%; animation-delay: 4s;"></div>
+    <div class="dot" style="width: 120px; height: 120px; left: 50%; top: 80%; animation-delay: 6s;"></div>
+    <div class="dot" style="width: 80px; height: 80px; left: 80%; top: 70%; animation-delay: 8s;"></div>
+  </div>
+
+  <!-- Main content -->
+  <div class="main-content w-full max-w-md shadow-2xl overflow-hidden">
+    <div class="bg-[#001f49] p-8 text-center text-white">
+      <i class="fas fa-headset text-4xl mb-4"></i>
+      <h1 class="text-3xl font-bold mb-2">24/7 Live Support</h1>
+      <p class="text-blue-100">Expert help whenever you need it</p>
     </div>
     
-    <!-- Chat area -->
-    <div class="bg-white p-6">
-      <!-- Status indicator -->
-      <div class="flex items-center justify-center mb-6">
-        <div class="flex items-center bg-green-50 px-4 py-2 rounded-full">
-          <span class="w-2 h-2 bg-green-500 rounded-full mr-2 pulse"></span>
-          <span class="text-sm font-medium text-green-800">Online now</span>
-        </div>
+    <div class="p-8 text-center">
+      <div class="mb-8">
+        <i class="fas fa-comments text-5xl text-[#001f49] mb-4"></i>
+        <p class="text-gray-600 mb-6">Our team is available round the clock to assist you with any questions.</p>
+        <button class="btn-primary text-white font-medium py-3 px-6 rounded-full shadow-lg">
+          Start Chat Now
+        </button>
       </div>
       
-      <!-- Chat placeholder with loading animation -->
-      <div class="chat-placeholder rounded-xl border border-gray-200 h-[400px] flex flex-col items-center justify-center">
-        <div class="animate-bounce mb-4">
-          <i class="fas fa-comments text-4xl text-indigo-300"></i>
-        </div>
-        <h3 class="font-medium text-gray-700 mb-1">Connecting you with our team</h3>
-        <p class="text-sm text-gray-500">Your chat will appear here shortly...</p>
-        
-        <!-- Loading dots animation -->
-        <div class="flex space-x-1 mt-4">
-          <div class="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style="animation-delay: 0s"></div>
-          <div class="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-          <div class="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+      <div class="flex justify-center">
+        <div class="text-center px-6">
+          <i class="fas fa-clock text-2xl mb-2 text-[#001f49]"></i>
+          <p class="text-xs font-medium text-gray-700">24/7<br>Availability</p>
         </div>
       </div>
-      
-      <!-- Chat script embed (hidden until loaded) -->
-      <div id="chat-widget" class="hidden">
-        <script 
-          src="https://livechat-shackletonlife.connexone.co.uk/widget?connid=b59df615-f8ea-45f2-b2ab-38354699f812" 
-          id="livechat-shackletonlife" 
-          data-socket-uri="https://livechat-shackletonlife.connexone.co.uk">
-        </script>
-      </div>
-    </div>
-    
-    <!-- Footer -->
-    <div class="bg-gray-50 p-4 text-center border-t border-gray-200">
-      <div class="flex justify-center space-x-4 mb-2">
-        <a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-instagram"></i></a>
-      </div>
-      <p class="text-xs text-gray-500">© 2025 Your Company. All rights reserved. <a href="#" class="text-indigo-600 hover:underline">Privacy Policy</a> | <a href="#" class="text-indigo-600 hover:underline">Terms</a></p>
     </div>
   </div>
 
   <script>
-    // Simulate chat loading (you can remove this if you want the chat to load immediately)
-    setTimeout(() => {
-      document.querySelector('.chat-placeholder').classList.add('hidden');
-      document.getElementById('chat-widget').classList.remove('hidden');
-    }, 3000);
+    // This would normally initialize your chat widget
+    document.querySelector('.btn-primary').addEventListener('click', function() {
+      alert('Chat widget would open here!');
+    });
   </script>
 
 </body>
